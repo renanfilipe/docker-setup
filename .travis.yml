@@ -7,3 +7,16 @@ before_install:
 
 script:
     - docker run -e CI=true renanfilipe/docker-setup npm run test
+
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "docker-setup"
+    env: "DockerSetup-env"
+    bucket_name: "elasticbeanstalk-us-east-2-859596198700"
+    bucket_path: "docker-setup"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
