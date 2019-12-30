@@ -1,0 +1,9 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t renanfilipe/docker-setup -f Dockerfile.dev .
+
+script:
+    - docker run -e CI=true renanfilipe/docker-setup npm run test
